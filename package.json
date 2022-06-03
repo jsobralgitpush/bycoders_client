@@ -3,20 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.1",
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "axios": "^0.27.2",
     "framer-motion": "^6",
     "next": "12.1.6",
     "react": "18.1.0",
+    "react-data-table-component": "^7.5.2",
     "react-dom": "18.1.0",
+    "react-table": "^7.8.0",
     "sass": "1.32.12",
+    "styled-components": "^5.3.5",
     "swr": "0.5.5"
   },
   "devDependencies": {
