@@ -2,14 +2,22 @@ import FileUploader from "../components/Input";
 import Filter from "../components/Filter";
 import ListTransactions from "../components/ListTransactions";
 import { Box, SimpleGrid } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function Home({initialScope}) {
-  const [transactions, setTransactions] = useState(initialScope);
+export default function Home() {
+  const [transactions, setTransactions] = useState([]);
   const [optionSelected, setOptionSelected] = useState(null);
+  const [options, setOptions] = useState([]);
   const [balance, setBalance] = useState(0);
 
-  const options = [...new Set(initialScope.map(transaction => transaction.store_name))]
+  useEffect(() => {
+    fetch('http://localhost:3002/api/transactions')
+      .then(res => res.json())
+      .then(data => {
+        setTransactions(data);
+        setOptions([...new Set(data.map(transaction => transaction.store_name))])
+      })
+  }, [])
 
 
   return (
@@ -28,13 +36,4 @@ export default function Home({initialScope}) {
         </SimpleGrid>
     </>
   )
-}
-
-export async function getStaticProps(context) {
-  const res = await fetch('http://localhost:3000/api/transactions');
-  const initialScope = await res.json()
-
-  return {
-      props: {initialScope}
-  }
 }
