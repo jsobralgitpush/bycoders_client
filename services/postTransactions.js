@@ -5,7 +5,7 @@ export default function postTransactions(file, setTransactions, setBalance, opti
     let formData = new FormData();
     formData.append('file', file)
 
-    Axios.post('http://localhost:3000/api/transactions', formData, {
+    Axios.post('http://localhost:3002/api/transactions', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }

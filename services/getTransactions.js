@@ -1,7 +1,7 @@
 import setTransactionType from "./setTransactionType"
 
 export default function getTransactions(storeName, setTransactions, setBalance) {
-    fetch(`http://localhost:3000/api/transactions?store_name=${storeName}`)
+    fetch(`http://localhost:3002/api/transactions?store_name=${storeName}`)
       .then((res) => res.json())
       .then((data) => {
         setTransactions(data)
