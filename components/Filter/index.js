@@ -18,7 +18,7 @@ export default function Filter({optionsAvailable, setOptionSelected, setTransact
                 }} placeholder='Todos'>
                     {optionsAvailable.map((option, i) => <option value={option} key={i}>{option}</option>)}
                 </Select>
-                <FormHelperText>Após selecionar uma loja, o saldo ficará disponível</FormHelperText>
+                <FormHelperText>Após selecionar uma loja, o saldo desta loja ficará disponível</FormHelperText>
             </FormControl>
         </>
     )
