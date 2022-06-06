@@ -1,7 +1,7 @@
 import FileUploader from "../components/Input";
 import Filter from "../components/Filter";
 import ListTransactions from "../components/ListTransactions";
-import { Box, SimpleGrid } from '@chakra-ui/react'
+import { Box, SimpleGrid, Container, Center } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -23,13 +23,15 @@ export default function Home() {
   return (
     <>
         <SimpleGrid colums={1} spacing={5}>
-          <Box>
-            <FileUploader optionSelected={optionSelected} setTransactions={setTransactions} setBalance={setBalance}></FileUploader>
-          </Box>
-          <Box>
-            <Filter setBalance={setBalance} setTransactions={setTransactions} setOptionSelected={setOptionSelected} optionsAvailable={options}></Filter>
-          </Box>
-            {optionSelected ? <Box bg={balance > 0 ? 'green' : 'red'} w='100%' p={4} color='white'>Saldo disponível para {optionSelected}: R$ {balance} </Box> : ''}
+          <Container>
+            <Box m={10}>
+              <FileUploader optionSelected={optionSelected} setTransactions={setTransactions} setBalance={setBalance}></FileUploader>
+            </Box>
+            <Box m={5}>
+              <Filter setBalance={setBalance} setTransactions={setTransactions} setOptionSelected={setOptionSelected} optionsAvailable={options}></Filter>
+            </Box>
+              {optionSelected ? <Box bg={balance > 0 ? 'green' : 'red'} w='100%' p={4} color='white'>Saldo disponível para {optionSelected}: R$ {balance} </Box> : ''}
+          </Container>
           <Box>
             <ListTransactions scope={transactions}></ListTransactions>
           </Box>
