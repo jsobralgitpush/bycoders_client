@@ -10,7 +10,7 @@ import getTransactions from '../../services/getTransactions'
 export default function Filter({optionsAvailable, setOptionSelected, setTransactions, setBalance}) {
     return (
         <>
-            <FormControl>
+            <FormControl textAlign='center'>
                 <FormLabel htmlFor='email'>Nome da Loja</FormLabel>
                 <Select onChange={(e) => {
                     setOptionSelected(e.target.value)
