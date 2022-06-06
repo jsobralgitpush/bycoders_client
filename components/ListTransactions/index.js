@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import DataTable from 'react-data-table-component';
 import setTransactionType from '../../services/setTransactionType';
+import formatDateTime from '../../services/formatDateTime';
 
 export default function ListTransactions({scope}) {
     const columns = [
@@ -25,6 +25,11 @@ export default function ListTransactions({scope}) {
             sortable: true
         },  
         {
+            name: 'Hora',
+            selector: row => row.time,
+            sortable: true
+        },  
+        {
             name: 'Tipo de extrato',
             selector: row => row.extract_type,
             sortable: true
@@ -38,12 +43,14 @@ export default function ListTransactions({scope}) {
     
     const data = scope.map(transaction => {
         const { description, nature, operator } = setTransactionType(transaction.transaction_type)
+        const { date, time } = formatDateTime(transaction.date, transaction.time)
 
         return {
             store_name: transaction.store_name,
             store_owner: transaction.store_owner,
             transaction_type: description,
-            date: transaction.date,
+            date: date,
+            time: time,
             extract_type: nature,
             amount: `R$ ${transaction.amount/100}`,
         }
