@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend-rails:
+    container_name: backend-rails
+    build: ./bycoders_api
+    ports:
+      - "3002:3002"
+    command: bash -c "rm -f tmp/pids/server1.pid || true && bundle install && bundle exec rails s -p 3002 -b '0.0.0.0' -P tmp/pids/server1.pid"
+  frontend-nextjs:
+    container_name: frontend-nextjs
+    build: 
+      context: ./bycoders_client
+    ports:
+      - "5001:5001"
+    command: yarn dev
+    depends_on:
+      - backend-rails
